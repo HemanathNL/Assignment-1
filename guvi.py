@@ -1,3 +1,4 @@
+from enum import Flag
 import re
 
 def checkemailid(emailid):
@@ -36,7 +37,7 @@ def checkpwd(password):
         return password
         break
   if flag ==-1:
-    print("Not a Valid Password")
+    print("Please enter an valid Password" "\n" "Your Password must have minimum one special character, one numerical digit, one uppercase and one lowercase")
     return False
 
 def getdetails():
@@ -50,7 +51,7 @@ def getdetails():
     else:
       password = input("Password: ")
       if checkpwd(password) == False:
-        print("Please enter an valid Password" "\n" "Your Password must have minimum one special character, one numerical digit, one uppercase and one lowercase")
+        #print("Please enter an valid Password" "\n" "Your Password must have minimum one special character, one numerical digit, one uppercase and one lowercase")
         g=g+1
          
     if g==0:
@@ -67,9 +68,9 @@ def get_existing_users(Emailid, Password):
       if V in line:
         p=1
     if p==1:
-      print("Login Successful")
+      print("Logged Successfully")
     else:
-      print("Please Register")
+      print("Not Registered, Please Register")
     
 def checkdetails():
   print("Please Provide")
@@ -85,13 +86,14 @@ def checkuser(Forgotid):
         c=1
     if c==1:
       print("Please provie a new password")
-      Npwd = input("Password: ")
-      file1 = open("User Data.txt","a")
-      N = [Forgotid,Npwd,"\n"]     
-      file1.writelines(N)
-      print("Password is saved")
+      Newpwd = input("Password: ")
+      if checkpwd(Newpwd)==True:
+       file1 = open("User Data.txt","a")
+       N = [Forgotid,Newpwd,"\n"]     
+       file1.writelines(N)
+       print("Password is updated")
     else:
-      print("Please Register")
+      print("Email ID not registered, Please Register")
       
 def forgotpwd():
   print("Please Provide")
@@ -106,3 +108,5 @@ elif choice == 2:
   checkdetails()
 elif choice == 3:
   forgotpwd()
+else:
+    print("Entered wrong option")
